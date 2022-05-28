@@ -1,3 +1,87 @@
+:root {
+  --primary: #64bf1c;
+}
+.primary-color {
+  color: var(--primary);
+}
+
+.scoreboardRow {
+  display: flex;
+  margin: 50px 0;
+  font-size: 60px;
+  font-weight: 800;
+  justify-content: center;
+}
+
+.scoreboardRow.score {
+  font-size: 500px;
+  margin: -100px 0;
+}
+
+.scoreboardRow.timer div {
+  flex-basis: 500px;
+  flex-shrink: 0;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 300px;
+}
+
+.scoreboardRow.timer .center {
+  background: #343434;
+}
+
+.scoreboardRow.timer .right,
+.scoreboardRow.timer .left {
+  background: #cc1515;
+  flex-grow: 0;
+}
+
+.scoreboardRow.timer .left {
+  padding-right: 180px;
+  margin-right: -200px;
+}
+
+.scoreboardRow.timer .right {
+  padding-left: 180px;
+  margin-left: -200px;
+  position: relative;
+  z-index: -1;
+}
+
+.scoreboardRow div.spacer {
+  flex-basis: 0;
+  flex-grow: 1;
+}
+
+.scoreboardRow.timer {
+  font-size: 150px;
+  color: white;
+}
+
+.scoreboardRow.part {
+  font-weight: bold;
+}
+
+.scoreboardRow .left,
+.scoreboardRow .right {
+  flex-basis: 0;
+  flex-grow: 1;
+}
+
+.scoreboardRow .separator {
+  flex-basis: 300px;
+  font-weight: 800;
+  opacity: 0.22;
+}
+
+.scoreboardRow .left {
+  text-align: right;
+}
+
+.scoreboardRow .right {
+  text-align: left;
+}
+
 .App {
   text-align: center;
 }
