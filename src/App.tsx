@@ -19,8 +19,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <Routes>
+          <Route path="/" element={<ScoreBoard />} />
           <Route path="/admin" element={<AdminMatch />} />
-          <Route path="/scoreboard" element={<ScoreBoard />} />
         </Routes>
       </div>
     </ThemeProvider>

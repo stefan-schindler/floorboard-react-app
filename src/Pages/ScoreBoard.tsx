@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Utils from "../Utils";
 
 function ScoreBoard() {
@@ -79,6 +80,10 @@ function ScoreBoard() {
         </div> */}
         <div className="spacer"></div>
       </div>
+
+      <Link to={"/admin"} target="_blank">
+        Admin
+      </Link>
     </div>
   );
 }

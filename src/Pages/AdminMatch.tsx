@@ -29,7 +29,7 @@ function AdminMatch() {
 
   const [scoreA, setScoreA] = useState(0);
   const [scoreB, setScoreB] = useState(0);
-  const [partName, setPartName] = useState("1. polčas");
+  const [partName, setPartName] = useState("");
 
   useEffect(() => {
     let countdownInterval = accurateInterval(() => {
@@ -122,7 +122,7 @@ function AdminMatch() {
         <Stack direction="row" justifyContent="center" spacing={2}>
           <TextField
             id="outlined-basic"
-            label="Časť hry"
+            label="Časť hry (1. polčas, ...)"
             value={partName}
             variant="outlined"
             onChange={(e) => {
