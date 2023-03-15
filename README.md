@@ -15,6 +15,10 @@ Now you shoud have opened two web browser tabs - one showing the score page and 
 
 Alternatively you can watch this video showing the above steps:
 
+https://user-images.githubusercontent.com/26493472/225466086-55346084-f5e4-4e40-9dce-4d0d9b27a45c.mp4
+
+
+
 ## Tips and Tricks
 
 You can connect secondary display to your laptop and the score page tab to be displayed on the secondary display. This way you can make edits to the score/time/team names on your laptop and the changes will be visible on the connected display to the players and the audience.
