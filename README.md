@@ -22,3 +22,5 @@ https://user-images.githubusercontent.com/26493472/225466086-55346084-f5e4-4e40-
 ## Tips and Tricks
 
 You can connect secondary display to your laptop and the score page tab to be displayed on the secondary display. This way you can make edits to the score/time/team names on your laptop and the changes will be visible on the connected display to the players and the audience.
+
+![image](https://user-images.githubusercontent.com/26493472/225467020-b8b64867-acfd-4a8e-a6e5-db354b242059.png)
