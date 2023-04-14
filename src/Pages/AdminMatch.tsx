@@ -22,15 +22,32 @@ function AdminMatch() {
   const [remainingSeconds, setRemainingSeconds] = useState(
     new Date(0, 0, 0, 0, 10, 0, 0)
   );
+  const [remainingPenaltyTimeA, setRemainingPenaltyTimeA] = useState(
+    new Date(0, 0, 0, 0, 0, 0, 0)
+  );
+  const [remainingPenaltyTimeB, setRemainingPenaltyTimeB] = useState(
+    new Date(0, 0, 0, 0, 0, 0, 0)
+  );
+
+  
 
   const [remainingSecondsWhenUnpaused, setRemainingSecondsWhenUnpaused] =
     useState(new Date());
   const [unpausedAtTime, setUnpausedAtTime] = useState(new Date());
 
+  const [remainingPenaltyASecondsWhenUnpaused, setRemainingPenaltyASecondsWhenUnpaused] =
+    useState(new Date());
+  const [unpausedPenaltyAAtTime, setUnpausedPenaltyAAtTime] = useState(new Date());
+
+  const [remainingPenaltyBSecondsWhenUnpaused, setRemainingPenaltyBSecondsWhenUnpaused] =
+    useState(new Date());
+  const [unpausedPenaltyBAtTime, setUnpausedPenaltyBAtTime] = useState(new Date());
+
   const [scoreA, setScoreA] = useState(0);
   const [scoreB, setScoreB] = useState(0);
   const [partName, setPartName] = useState("");
 
+  // countdown
   useEffect(() => {
     let countdownInterval = accurateInterval(() => {
       if (!paused) {
@@ -49,10 +66,62 @@ function AdminMatch() {
     return () => countdownInterval.clear();
   }, [paused, remainingSeconds, setRemainingSeconds]);
 
+  //penalty A countdown
+  useEffect(() => {
+    let penaltyACountdownInterval = accurateInterval(() => {
+      if (!paused) {
+        let penaltyADiff = new Date().valueOf() - unpausedPenaltyAAtTime.valueOf();
+        let newPenaltyADate = new Date(remainingPenaltyASecondsWhenUnpaused.getTime());
+        newPenaltyADate.setSeconds(newPenaltyADate.getSeconds() - penaltyADiff / 1000);
+
+        if (newPenaltyADate.getHours() != remainingPenaltyASecondsWhenUnpaused.getHours())
+          setRemainingPenaltyTimeA(new Date(0));
+        else setRemainingPenaltyTimeA(newPenaltyADate);
+      } else {
+        setRemainingPenaltyASecondsWhenUnpaused(remainingPenaltyTimeA);
+        setUnpausedPenaltyAAtTime(new Date());
+      }
+    }, 500);
+    return () => penaltyACountdownInterval.clear();
+  }, [paused, remainingPenaltyTimeA, setRemainingPenaltyTimeA]);
+
+  //penalty B countdown
+  useEffect(() => {
+    let penaltyBCountdownInterval = accurateInterval(() => {
+      if (!paused) {
+        let penaltyBDiff = new Date().valueOf() - unpausedPenaltyBAtTime.valueOf();
+        let newPenaltyBDate = new Date(remainingPenaltyBSecondsWhenUnpaused.getTime());
+        newPenaltyBDate.setSeconds(newPenaltyBDate.getSeconds() - penaltyBDiff / 1000);
+
+        if (newPenaltyBDate.getHours() != remainingPenaltyBSecondsWhenUnpaused.getHours())
+          setRemainingPenaltyTimeB(new Date(0));
+        else setRemainingPenaltyTimeB(newPenaltyBDate);
+      } else {
+        setRemainingPenaltyBSecondsWhenUnpaused(remainingPenaltyTimeB);
+        setUnpausedPenaltyBAtTime(new Date());
+      }
+    }, 500);
+    return () => penaltyBCountdownInterval.clear();
+  }, [paused, remainingPenaltyTimeB, setRemainingPenaltyTimeB]);
+
   useEffect(() => {
     localStorage.setItem(
       "remainingTime",
       Utils.dateToSeconds(remainingSeconds || new Date()).toString()
+    );
+  }, [remainingSeconds]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "remainingPenaltyTimeA",
+      Utils.dateToSeconds(remainingPenaltyTimeA || new Date()).toString()
+    );
+  }, [remainingSeconds]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "remainingPenaltyTimeB",
+      Utils.dateToSeconds(remainingPenaltyTimeB || new Date()).toString()
     );
   }, [remainingSeconds]);
 
@@ -101,23 +170,51 @@ function AdminMatch() {
           />
         </div>
 
-        {/* <div className="scoreboardRow">
-          <TextField
+        <div className="scoreboardRow">
+          {/* <TextField
             id="outlined-basic"
             label="Trestný čas A"
             variant="outlined"
             type="number"
-            onChange={(e) => localStorage.setItem("scoreA", e.target.value)}
+            onChange={(e) => localStorage.setItem("remainingPenaltyTimeA", e.target.value)}
+          /> */}
+          <TimePicker
+            disabled={!paused}
+            ampmInClock
+            views={["minutes", "seconds"]}
+            inputFormat="mm:ss"
+            mask="__:__"
+            label="Zostávajúci trestný čas A"
+            value={remainingPenaltyTimeA}
+            onChange={(newValue) => {
+              setRemainingPenaltyTimeA(newValue || new Date());
+            }}
+            renderInput={(params) => <TextField {...params} />}
           />
           <div className="separator"></div>
-          <TextField
+          {/* <TextField
             id="outlined-basic"
             label="Trestný čas B"
             type="number"
             variant="outlined"
-            onChange={(e) => localStorage.setItem("scoreB", e.target.value)}
+            onChange={(newValue) => {
+              setRemainingPenaltyTimeA(newValue || new Date());
+              localStorage.setItem("remainingPenaltyTimeB", newValue.target.value)}}
+          /> */}
+          <TimePicker
+            disabled={!paused}
+            ampmInClock
+            views={["minutes", "seconds"]}
+            inputFormat="mm:ss"
+            mask="__:__"
+            label="Zostávajúci trestný čas B"
+            value={remainingPenaltyTimeB}
+            onChange={(newValue) => {
+              setRemainingPenaltyTimeB(newValue || new Date());
+            }}
+            renderInput={(params) => <TextField {...params} />}
           />
-        </div> */}
+        </div>
 
         <Stack direction="row" justifyContent="center" spacing={2}>
           <TextField

@@ -36,6 +36,12 @@
   flex-grow: 0;
 }
 
+.scoreboardRow.timer .rightHidden,
+.scoreboardRow.timer .leftHidden {
+  background: #ffffff;
+  flex-grow: 0;
+}
+
 .scoreboardRow.timer .left {
   padding-right: 180px;
   margin-right: -200px;

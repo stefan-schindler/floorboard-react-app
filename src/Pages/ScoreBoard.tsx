@@ -73,11 +73,9 @@ function ScoreBoard() {
 
       <div className="scoreboardRow timer">
         <div className="spacer"></div>
-        {/* <div className="left">{Utils.formatSeconds(remainingPenaltyTimeA)}</div> */}
+        {remainingPenaltyTimeA!== 0 ? <div className="left">{Utils.formatSeconds(remainingPenaltyTimeA)}</div> : <div className="leftHidden"/>}
         <div className="center">{Utils.formatSeconds(remainingTime)}</div>
-        {/* <div className="right">
-          {Utils.formatSeconds(remainingPenaltyTimeB)}
-        </div> */}
+        {remainingPenaltyTimeB!== 0 ? <div className="right">{Utils.formatSeconds(remainingPenaltyTimeB)}</div> : <div className="rightHidden"/>}
         <div className="spacer"></div>
       </div>
 
