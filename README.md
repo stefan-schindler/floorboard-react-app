@@ -6,7 +6,7 @@ Floorbard App is a simple web application used to show realtime game stats of a 
 
 To use the app on your computer, follow these steps:
 
-1. Download the latest `floorboard-app.zip` file from the [Releases section].(https://github.com/stefan-schindler/floorboard-react-app/releases/)
+1. Download the latest `floorboard-app.zip` file from the [Releases section](https://github.com/stefan-schindler/floorboard-react-app/releases/).
 2. Unzip the file.
 3. Open the _index.html_ file contained in the unzipped folder in any web browser.
 4. Click on the _Admin_ link at the bottom of the opened page. This will open new tab with administration page.
